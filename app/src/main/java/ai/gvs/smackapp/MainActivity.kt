@@ -2,8 +2,9 @@ package ai.gvs.smackapp
 
 import android.os.Bundle
 import ai.gvs.smackapp.ui.main.MainFragment
+import androidx.appcompat.app.AppCompatActivity
 
-class MainActivity : AppCompatActivitypatActivity() {
+class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
