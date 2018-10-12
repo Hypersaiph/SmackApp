@@ -5,7 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ai.gvs.smackapp.R
+import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 
 class MainFragment : Fragment() {
@@ -24,7 +27,18 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        // TODO: Use the ViewModel
+        //observing the data :v
+        viewModel.data.observe(this, Observer { data ->
+            //view?.findViewById<TextView>(R.id.message)?.text = data
+        })
+
+        viewModel.clicks.observe(this, Observer { data ->
+            val text: String = viewModel.data.value + " clicks: " + data
+            view?.findViewById<TextView>(R.id.message)?.text = text
+        })
+        view?.findViewById<Button>(R.id.clickButton)?.setOnClickListener {
+            viewModel.userCLicked()
+        }
     }
 
 }
